@@ -5,7 +5,7 @@ import facebook from '../assets/facebook.png'
 import instagram from '../assets/instagram.png'
 import twitter from '../assets/twitter.png'
 import youtube from '../assets/youtube.png'
-import template1 from '../assets/template1.png'
+import template1 from '../assets/template1.svg'
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react';
 

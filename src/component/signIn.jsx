@@ -16,6 +16,10 @@ export default function SignIn ({show, handleClose}) {
 
   const navigate = useNavigate()
 
+  const home = () => {
+    navigate("/home");
+  }
+
   document.title = "Sign Up"
 //   let api = API();
 //   const navigate = useNavigate()
@@ -124,13 +128,13 @@ export default function SignIn ({show, handleClose}) {
                   <Form.Control className="py-2" id="password" onChange="" value="" name="password" type="password" placeholder="Password" required/>
                   </Form.Group>
                   <div className="d-grid mt-4 mb-3">
-                    <Button type="button" className="mt-2 btnModal" onClick={navigate("/home")} size="lg">
+                    <Button type="button" className="mt-2 btnModal" onClick={home} size="lg">
                       Sign In
                     </Button>
                   </div>
                 <center>
                 <p className="mb-4">Don't have an account ? Klik 
-                <Link to="" className="text-reset text-decoration-none fw-bold ms-1" onClick={handleSignUpShow}>
+                <Link to="/" className="text-reset text-decoration-none fw-bold ms-1" onClick={handleSignUpShow}>
                     Here
                 </Link>
                 <SignUp show={signUp} handleClose={handleSignUpClose}/></p>

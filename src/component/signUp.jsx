@@ -124,7 +124,7 @@ function SignUp({show, handleClose}) {
                   </div>
                 <center>
                 <p className="mb-4">Already have an account ? Klik 
-                <Link to="" className="text-reset text-decoration-none fw-bold ms-1" onClick={handleSignInShow}>
+                <Link to="/" className="text-reset text-decoration-none fw-bold ms-1" onClick={handleSignInShow}>
                     Here
                 </Link>
                 <SignIn show={signIn} handleClose={handleSignInClose}/></p>

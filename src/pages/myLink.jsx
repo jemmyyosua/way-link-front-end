@@ -55,8 +55,8 @@ export default function MyLink(){
                                                                 </Col>
                                                                 <Col sm="7">
                                                                     <Row>
-                                                                    <form class="nosubmit">
-                                                                    <input class="nosubmit" type="search" placeholder="Search..."/>
+                                                                    <form className="nosubmit">
+                                                                    <input className="nosubmit" type="search" placeholder="Search..."/>
                                                                     </form>
                                                                     </Row>
                                                                 </Col>
@@ -68,7 +68,7 @@ export default function MyLink(){
                                                             <Stack className="mt-5" direction="horizontal" gap={3}>
                                                             <div className="bg-light border"><Image className="ms-3" src={list} /></div>
                                                             <div className="bg-light border mt-4">
-                                                                <h4 className="text">WaysFood</h4>
+                                                                <Link to="/link"><h4 className="text">WaysFood</h4></Link>
                                                                 <p className="text-muted text">localhost:3000/waysfood</p>
                                                             </div>
                                                             

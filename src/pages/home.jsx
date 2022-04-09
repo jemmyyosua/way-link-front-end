@@ -1,6 +1,6 @@
 import {Navbar, Container, Image, Button, Row, Col} from 'react-bootstrap'
 import logo from '../assets/logo.png'
-import template1 from '../assets/template1.png'
+import template1 from '../assets/template1.svg'
 import template2 from '../assets/template2.png'
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react';

@@ -1,7 +1,7 @@
 import {Navbar, Container, Image, Button, Row, Col} from 'react-bootstrap'
 import logo from '../assets/logo.png'
-import pc from '../assets/pc.png'
-import phone from '../assets/template1.png'
+import pc from '../assets/pc.svg'
+import template1 from '../assets/template1.svg'
 import { Link } from 'react-router-dom'
 
 import SignIn from '../component/signIn'
@@ -25,11 +25,11 @@ export default function Landing(){
         <div>
         <Navbar>
           <Container>
-            <Navbar.Brand href="#home"><Image src={logo} /></Navbar.Brand>
+            <Navbar.Brand><Image src={logo} /></Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text className="me-4">
-                 <Link to="/" onClick={handleSignInShow} className="text-decoration-none fw-bold" >Login</Link> 
+                 <Link to="" onClick={handleSignInShow} className="text-decoration-none fw-bold" >Login</Link> 
                  <SignIn show={signIn} handleClose={handleSignInClose} />
               </Navbar.Text>
               <Button onClick={handleSignUpShow} className="px-4 fw-bold btnModal" style={{borderRadius : 7, color : "white"}}>Register</Button>
@@ -39,16 +39,16 @@ export default function Landing(){
         </Navbar>
 
         <div className="bubbles mt-5">
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
-          <div class="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
           </div>
 
           <div className="mt-5" style={{color: "White"}}> 
@@ -62,7 +62,7 @@ export default function Landing(){
                     </Col>
                     <Col>
                         <span className="ms-4"><Image className="ms-5" src={pc} /></span>
-                        <Image className="ms-5" src={phone} width="15%" style={{position : "absolute", bottom : 80, right : 550}} />
+                        <Image className="ms-5" src={template1} style={{position : "absolute", bottom : 80, right : 550}} />
                     </Col>
                 </Row>
             </Container>
