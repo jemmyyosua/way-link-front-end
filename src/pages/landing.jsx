@@ -1,7 +1,7 @@
-import {Navbar, Container, Image, Button, Row, Col} from 'react-bootstrap'
+import {Navbar, Container, Button, Row, Col} from 'react-bootstrap'
 import logo from '../assets/logo.png'
 import pc from '../assets/pc.svg'
-import template1 from '../assets/template1.svg'
+import phone from '../assets/Phone.png'
 import { Link } from 'react-router-dom'
 
 import SignIn from '../component/signIn'
@@ -23,9 +23,9 @@ export default function Landing(){
 
     return(
         <div>
-        <Navbar>
+        <Navbar bg="white">
           <Container>
-            <Navbar.Brand><Image src={logo} /></Navbar.Brand>
+            <Navbar.Brand><img src={logo} /></Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text className="me-4">
@@ -53,18 +53,16 @@ export default function Landing(){
 
           <div className="mt-5" style={{color: "White"}}> 
             <Container>
-                <Row>
                     <Col> 
-                        <h1 className="fw-bolder text" style={{fontSize : 80, fontFamily : "Avenir"}}>The Only Link <br/> You'll Ever Need</h1>
+                        <h1 className="fw-bolder text text1" style={{fontSize : 80, fontFamily : "Avenir"}}>The Only Link <br/> You'll Ever Need</h1>
                         <br/>
-                        <p className="fw-lighter text" style={{fontSize : 30, fontFamily : "Avenir"}}>Add a link for your Social Bio and optimize your <br/> social media traffic. <br/><br/>safe, fast and easy to use</p>
-                        <Button variant="dark" className="px-3 py-2 mt-2" style={{borderRadius : 7, color : "white"}}> <Link to="/" className="text-decoration-none text-reset fw-bold" >Get Started For Free</Link> </Button>
+                        <p className="fw-lighter text text2" style={{fontSize : 30, fontFamily : "Avenir"}}>Add a link for your Social Bio and optimize your <br/> social media traffic. <br/><br/>safe, fast and easy to use</p>
+                        <Button variant="dark" className="px-3 py-2 mt-2 btnL" style={{borderRadius : 7, color : "white"}}> <Link to="/" className="text-decoration-none text-reset fw-bold" >Get Started For Free</Link> </Button>
                     </Col>
                     <Col>
-                        <span className="ms-4"><Image className="ms-5" src={pc} /></span>
-                        <Image className="ms-5" src={template1} style={{position : "absolute", bottom : 80, right : 550}} />
+                        <img className="imgL1" src={pc} style={{position : "absolute", bottom : 175, right : 140}} />
+                        <img className="imgL2" src={phone} style={{position : "absolute", bottom : 80, right : 550}} />
                     </Col>
-                </Row>
             </Container>
         </div>
       </div>

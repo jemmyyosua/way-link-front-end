@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
+import { QueryClient, QueryClientProvider } from "react-query"
+import { UserContextProvider } from "./context/context"
 import reportWebVitals from './reportWebVitals'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router} from 'react-router-dom'
+
+const client = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
-     {/* <Router> */}
-      <App />
-    {/* </Router> */}
+    <UserContextProvider>
+    <QueryClientProvider client={client}>
+        <Router>
+          <App />
+        </Router>
+    </QueryClientProvider>
+  </UserContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

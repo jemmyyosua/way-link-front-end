@@ -3,9 +3,9 @@ import {React, useState, useContext} from 'react'
 import { Link } from "react-router-dom"
 import SignIn from './signIn';
 
-// import {UserContext} from '../context/userContext'
-// import { useMutation } from "react-query";
-// import { API } from "../api/api";
+import { UserContext } from '../context/context'
+import { useMutation } from "react-query";
+import { API } from "../api/api";
 
 function SignUp({show, handleClose}) {
   const [signIn, setSignIn] = useState(false)
@@ -14,78 +14,78 @@ function SignUp({show, handleClose}) {
   const handleSignInShow = () => setSignIn(true)
 
   document.title = "Sign In"
-//   let api = API();
+  let api = API();
 
-//   const [state, dispatch] = useContext(UserContext);
+  const [state, dispatch] = useContext(UserContext);
 
-//   const [message, setMessage] = useState(null);
-//   const [form, setForm] = useState({
-//     fullName: "",
-//     email: "",
-//     password: "",
-//   });
+  const [message, setMessage] = useState(null);
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+  });
 
-//   const { fullName, email, password } = form;
+  const { fullName, email, password } = form;
 
-//   const handleChange = (e) => {
-//     setForm({
-//       ...form,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-//   const handleSubmit = useMutation(async (e) => {
-//     try {
-//       e.preventDefault();
+  const handleSubmit = useMutation(async (e) => {
+    try {
+      e.preventDefault();
 
-//       // Data body
-//       const body = JSON.stringify(form);
+      // Data body
+      const body = JSON.stringify(form);
 
-//       // Configuration Content-type
-//       const config = {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: body,
-//       };
+      // Configuration Content-type
+      const config = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      };
 
-//       // Insert data user to database
-//       const response = await api.post("/register", config);
+      // Insert data user to database
+      const response = await api.post("/register", config);
 
-//       console.log(response);
+      console.log(response);
 
-//       // Notification
-//       if (response.status === "success") {
-//         const alert = (
-//           <Alert variant="success" className="">
-//             Success
-//           </Alert>
-//         );
-//         setMessage(alert);
-//         setForm({
-//           fullName: "",
-//           email: "",
-//           password: "",
-//         })
-//       } else {
-//         const alert = (
-//           <Alert variant="danger" className="">
-//             Failed
-//           </Alert>
-//         );
-//         setMessage(alert);
-//       }
-//     } catch (error) {
-//       const alert = (
-//         <Alert variant="danger" className="">
-//           Failed
-//         </Alert>
-//       );
-//       setMessage(alert);
-//       console.log(error);
-//     }
-//   })
+      // Notification
+      if (response.status === "success") {
+        const alert = (
+          <Alert variant="success" className="">
+            Success
+          </Alert>
+        );
+        setMessage(alert);
+        setForm({
+          name: "",
+          email: "",
+          password: "",
+        })
+      } else {
+        const alert = (
+          <Alert variant="danger" className="">
+            Failed 1
+          </Alert>
+        );
+        setMessage(alert);
+      }
+    } catch (error) {
+      const alert = (
+        <Alert variant="danger" className="">
+          Failed 2
+        </Alert>
+      );
+      setMessage(alert);
+      console.log(error);
+    }
+  })
 
 
     return (
@@ -104,18 +104,18 @@ function SignUp({show, handleClose}) {
           <Row className="justify-content-center">
             <Col lg="10">
               <h1>Sign Up</h1>
-              <Form >
-                {/* {message && message} */}
+              <Form onSubmit={(e) => handleSubmit.mutate((e))}>
+                {message && message}
                 <Form.Group className="mt-4 mb-4" controlId="formBasicEmail">
-                  <Form.Control onChange="" className="py-2" name="email" value="" type="email" placeholder="Email" required/>
+                  <Form.Control onChange={handleChange} className="py-2" name="email" value={email} type="email" placeholder="Email" required/>
                   </Form.Group>
 
                   <Form.Group className="mb-4" controlId="formBasicPassword">
-                  <Form.Control onChange="" className="py-2" name="password" value="" type="password" placeholder="Password" required/>
+                  <Form.Control onChange={handleChange} className="py-2" name="password" value={password} type="password" placeholder="Password" required/>
                   </Form.Group>
 
                   <Form.Group className="mt-4 mb-4" controlId="formBasicEmail">
-                  <Form.Control onChange="" className="py-2" name="fullName" value="" type="text" placeholder="Full Name" required/>
+                  <Form.Control onChange={handleChange} className="py-2" name="fullName" value={fullName} type="text" placeholder="Full Name" required/>
                   </Form.Group>
                   <div className="d-grid mt-4 mb-3">
                   <Button type="submit" className="mt-2 btnModal" size="lg">
