@@ -1,11 +1,8 @@
-import {Badge, Card,  Row} from 'react-bootstrap'
-import logo from '../assets/logo.png'
+import {Badge, Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Icon } from '@iconify/react';
 
-import { useNavigate } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import { UserContext } from "../context/context"
+import Sidebar from '../component/sidebar'
+
 import { API } from '../api/api'
 import { useQuery } from 'react-query'
 
@@ -13,17 +10,6 @@ export default function Home(){
 
     let api = API()
     document.title = "Home"
-
-    const [state, dispatch] = useContext(UserContext)
-    const navigate = useNavigate()
-
-    const logout = () => {
-        console.log(state)
-        dispatch({
-        type: "LOGOUT",
-        })
-        navigate("/", { replace: true })
-    }
 
     let { data :templates } = useQuery("templatesCache", async () => {
         const config = {
@@ -39,53 +25,32 @@ export default function Home(){
     return(
         <>
          <div className="s-layout">
-            <div className="s-layout__sidebar">
-            <a className="s-sidebar__trigger">
-               <Icon className="ms-3" icon="fa:bars" width="40" height="60" color="gray" />
-            </a>
-
-            <nav className="s-sidebar__nav">
-               <ul>
-                  <li>
-                     <a className="s-sidebar__nav-brand">
-                           <Link to="/home"><img src={logo} className="ms-5 mt-2" /></Link> 
-                     </a>
-                  </li>
-                  <li>
-                     <a className="s-sidebar__nav-link active">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="/home"><Icon className="me-1" icon="la:cubes" width="35" height="35" />Template</Link>
-                     </a>
-                  </li>
-                  <li>
-                     <a className="s-sidebar__nav-link active2">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="/profile"><Icon className="me-2" icon="iconoir:profile-circled" width="35" height="35" />Profile</Link>
-                     </a>
-                  </li>
-                  <li>
-                     <a className="s-sidebar__nav-link active2">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="/my-link"><Icon className="me-2" icon="akar-icons:link-chain" width="33" height="33" />My Link</Link>
-                     </a>
-                  </li>
-                  <li className="mt-5">
-                     <a className="s-sidebar__nav-link mt-5 active2">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="" onClick={logout}><Icon className="me-2" icon="simple-line-icons:logout" width="28" height="28" />Logout</Link>
-                     </a>
-                  </li>
-               </ul>
-            </nav>
-            </div>
+            <Sidebar 
+            style1="s-sidebar__nav-link active text-decoration-none mt-5 fw-bold ms-5"
+            style2="s-sidebar__nav-link active2 text-decoration-none fw-bold ms-5"
+            style3="s-sidebar__nav-link active2 text-decoration-none fw-bold ms-5"
+            style4="s-sidebar__nav-link mt-5 active2 text-decoration-none fw-bold ms-5"
+            />
 
             <main className="s-layout__content">
-            <Badge bg="white" className="d-flex flex-column py-4 px-5" style={{color : "black", borderRadius : "unset", textAlign : "left", fontSize : "17pt"}} >Template</Badge>
-               {templates?.map((item, index) => ( 
-                     <div className="s-layout_main mt-5">
+               <Badge bg="white" className="d-flex flex-column py-4 px-5" style={{color : "black", borderRadius : "unset", textAlign : "left", fontSize : "17pt"}} >Template</Badge>
+               {templates?.length !== 0 ?(
+                  <div className="s-layout_main mt-5">
+                     {templates?.map((item, index) => ( 
+                     <Link to={`/template/${item.id}`} key={index}>
                      <Card style={{ width: '18rem', backgroundColor : "inherit", border : "unset" }}>
                      <Card.Body>
-                        <Link to="/template" key={index}><img src={item.image} alt={item.title}/></Link>
+                       <img src={item.image} alt={item.title}/>
                      </Card.Body>
                      </Card>
-                     </div>
-               ))}
+                     </Link>
+                        ))}
+                  </div>
+                ) : ( 
+                    <div className="s-layout_main mt-5">
+                        <h3>Coming Soon New Template .......</h3>
+                    </div>
+                  )}
             </main>
          </div>
         </>

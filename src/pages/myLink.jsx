@@ -1,13 +1,11 @@
-import {Navbar, Container, Button, Row, Col, Stack, Badge, Card} from 'react-bootstrap'
-import logo from '../assets/logo.png'
+import { Container, Button, Row, Col, Stack, Badge} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 
 import DeleteData from '../component/modalDeleteLink'
+import Sidebar from '../component/sidebar'
 
-import { useNavigate, useLocation } from 'react-router-dom'
-import { UserContext } from "../context/context"
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { API } from '../api/api'
 import { useQuery, useMutation } from 'react-query'
 
@@ -15,17 +13,6 @@ export default function MyLink(){
 
     let api = API()
     document.title = "My Link"
-
-    const [state, dispatch] = useContext(UserContext)
-    const navigate = useNavigate()
-
-    const logout = () => {
-        console.log(state)
-        dispatch({
-        type: "LOGOUT",
-        })
-        navigate("/", { replace: true })
-    }
 
     let { data : links, refetch } = useQuery("linksCache", async () => {
         const config = {
@@ -84,9 +71,6 @@ export default function MyLink(){
       })
 
       const [idUpdate, setIdUpdate] = useState(null)
-      const updateVisit = (id) => {
-        setIdUpdate(id)
-      }
 
       useEffect(() => {
         if (confirmDelete) {
@@ -101,41 +85,12 @@ export default function MyLink(){
     return(
         <>
         <div className="s-layout">
-            <div className="s-layout__sidebar">
-            <a className="s-sidebar__trigger">
-               <Icon className="ms-3" icon="fa:bars" width="40" height="60" color="gray" />
-            </a>
-
-            <nav className="s-sidebar__nav">
-               <ul>
-                  <li>
-                     <a className="s-sidebar__nav-brand">
-                           <Link to="/home"><img src={logo} className="ms-5 mt-2" /></Link> 
-                     </a>
-                  </li>
-                  <li>
-                     <a className="s-sidebar__nav-link active2">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="/home"><Icon className="me-1" icon="la:cubes" width="35" height="35" />Template</Link>
-                     </a>
-                  </li>
-                  <li>
-                     <a className="s-sidebar__nav-link active2">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="/profile"><Icon className="me-2" icon="iconoir:profile-circled" width="35" height="35" />Profile</Link>
-                     </a>
-                  </li>
-                  <li>
-                     <a className="s-sidebar__nav-link active">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="/my-link"><Icon className="me-2" icon="akar-icons:link-chain" width="33" height="33" />My Link</Link>
-                     </a>
-                  </li>
-                  <li className="mt-5">
-                     <a className="s-sidebar__nav-link mt-5 active2">
-                           <Link className="text-decoration-none text-reset fw-bold ms-4" to="" onClick={logout}><Icon className="me-2" icon="simple-line-icons:logout" width="28" height="28" />Logout</Link>
-                     </a>
-                  </li>
-               </ul>
-            </nav>
-            </div>
+            <Sidebar 
+            style1="s-sidebar__nav-link active2 text-decoration-none mt-5 fw-bold ms-5"
+            style2="s-sidebar__nav-link active2 text-decoration-none fw-bold ms-5"
+            style3="s-sidebar__nav-link active text-decoration-none fw-bold ms-5"
+            style4="s-sidebar__nav-link mt-5 active2 text-decoration-none fw-bold ms-5"
+            />
 
             <main className="s-layout__content">
             <Badge bg="white" className="d-flex flex-column py-4 px-5" style={{color : "black", borderRadius : "unset", textAlign : "left", fontSize : "17pt"}} >My Links</Badge>
